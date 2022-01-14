@@ -1,0 +1,1 @@
+docker run --name blog -p 5432:5432 -e POSTGRES_USER=user -e POSTGRES_PASSWORD=pswd -e POSTGRES_DB=blogs -d postgres:13.3
