@@ -33,7 +33,7 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public Post updatePost(Integer putId, Post post) {
-        Post postDB = postRepository.findById(putId).get();
+        Post postDB = postRepository.findById(putId).orElse(null);
 
         if(Objects.nonNull(post.getTitle()) && !"".equalsIgnoreCase(post.getTitle())){
             postDB.setTitle(post.getTitle());
@@ -42,7 +42,6 @@ public class PostServiceImpl implements PostService{
         if(Objects.nonNull(post.getContent()) && !"".equalsIgnoreCase(post.getContent())){
             postDB.setContent(post.getContent());
         }
-
         return postRepository.save(postDB);
     }
 

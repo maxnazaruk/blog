@@ -13,7 +13,6 @@ public interface PostService {
 
     Post updatePost(Integer putId, Post post);
 
-
     List<Post> getPostsByTitle(String title);
 
     List<Post> sortByTitle();
