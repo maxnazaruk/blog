@@ -18,7 +18,7 @@ import javax.persistence.Id;
 public class PostWithoutCommentsDto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private String title;
     private String content;
     private boolean star;

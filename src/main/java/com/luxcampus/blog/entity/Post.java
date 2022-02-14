@@ -18,13 +18,16 @@ import java.util.Set;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private String title;
     private String content;
     private boolean star;
 
     @OneToMany(mappedBy = "post")
     private List<Comment> comments;
+
+    @ManyToMany(mappedBy = "posts")
+    private List<Tag> tags;
 
     @JsonManagedReference
     public List<Comment> getComments() {

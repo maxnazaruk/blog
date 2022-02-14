@@ -2,6 +2,7 @@ package com.luxcampus.blog.service;
 
 import com.luxcampus.blog.entity.Post;
 import com.luxcampus.blog.repository.PostRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.Sort;
@@ -11,9 +12,9 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
+@RequiredArgsConstructor
 public class PostServiceImpl implements PostService{
 
-    @Autowired
     private PostRepository postRepository;
 
     @Override

@@ -4,6 +4,7 @@ import com.luxcampus.blog.entity.Comment;
 import com.luxcampus.blog.entity.Post;
 import com.luxcampus.blog.repository.CommentRepository;
 import com.luxcampus.blog.repository.PostRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +13,11 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
 
-    @Autowired
-    CommentRepository commentRepository;
-
-    @Autowired
-    PostRepository postRepository;
+    private CommentRepository commentRepository;
+    private PostRepository postRepository;
 
     @Override
     public Comment postComment(String text, Integer postId) {

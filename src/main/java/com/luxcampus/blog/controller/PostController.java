@@ -4,25 +4,32 @@ import com.luxcampus.blog.dto.PostWithoutCommentsAndStarDto;
 import com.luxcampus.blog.dto.PostWithoutCommentsDto;
 import com.luxcampus.blog.entity.Post;
 import com.luxcampus.blog.service.PostService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/api/v1/posts")
+@RequiredArgsConstructor
 public class PostController {
 
-    @Autowired
-    private PostService postService;
+    private final PostService postService;
 
     @PostMapping
     public Post savePost(@RequestBody PostWithoutCommentsAndStarDto postWithoutCommentsAndStarDto) {
+        Post post = Post.builder().
+                title(postWithoutCommentsAndStarDto.getTitle())
+                .content(postWithoutCommentsAndStarDto.getContent()).
+                build();
+        return postService.savePost(post);
+    }
+
+    @PostMapping
+    public Post savePostWithTag(@RequestBody PostWithoutCommentsAndStarDto postWithoutCommentsAndStarDto) {
         Post post = Post.builder().
                 title(postWithoutCommentsAndStarDto.getTitle())
                 .content(postWithoutCommentsAndStarDto.getContent()).
@@ -84,6 +91,7 @@ public class PostController {
                     .content(post.getContent())
                     .build());
         }
+        
         return cutPosts;
     }
 

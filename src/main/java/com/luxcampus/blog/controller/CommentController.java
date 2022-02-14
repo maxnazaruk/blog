@@ -2,6 +2,7 @@ package com.luxcampus.blog.controller;
 
 import com.luxcampus.blog.entity.Comment;
 import com.luxcampus.blog.service.CommentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,10 +10,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/posts")
+@RequiredArgsConstructor
 public class CommentController {
 
-    @Autowired
-    CommentService commentService;
+    private final CommentService commentService;
 
     @PostMapping("/{id}/comments")
     public Comment postComment(@PathVariable("id") Integer postId, @RequestBody String text){
